@@ -6,6 +6,7 @@
         fluid="true"
     >
         <v-row class="pa-0 ma-0">
+            
             <v-col
                 cols="1"
                 class=" ma-0 pa-0 d-none d-lg-block"
@@ -14,12 +15,12 @@
             >
                <MainMenuArea :key="atualizarMenu" :pages="pages" @changePageAction="changePageListener"/>
             </v-col>
+            
             <div style="width:140px;" class="d-none d-lg-block"></div>
             
-
             <v-col
-            class="pa-0 ma-0"
-            cols="12"
+                class="pa-0 ma-0"
+                cols="12"
             >
                 <v-row class="pa-0 ma-0">
                     <div style="width:70px" class="d-none d-lg-block">
@@ -37,12 +38,12 @@
         <v-row >
             <div style="width:70px" class="d-none d-lg-block "></div>
             <v-col class="ps-lg-3">
-                <div v-if="showPage">
+                <div v-show="showPage">
                     <v-container fuild>
                         <router-view @alert="showAlert" @active_page="onPageLoaded" ></router-view>
                     </v-container>
                 </div>
-                <div v-else>
+                <div v-show="!showPage">
                     <LoadComponent/>
                 </div>
             </v-col>
@@ -88,8 +89,8 @@
 
 <script>
 
-import MainMenuArea from './MainMenuArea.vue';
-import TopMenuArea from './TopMenuArea.vue';
+import MainMenuArea  from './MainMenuArea.vue';
+import TopMenuArea   from './TopMenuArea.vue';
 import LoadComponent from './LoadComponent.vue'
 
 export default {
@@ -97,21 +98,11 @@ export default {
     name: 'ClientAdminArea',
     components:{MainMenuArea, TopMenuArea, LoadComponent},
     
-    async created(){
-        
+    created(){
         this.$set_responses_on_request(this)
-        let resp = await this.$request('@auth/load_me');
-
-        if(resp.error){
-            this.closeApp()
-            return;
-        }
-        
-        this.user = resp.data.user;
-        this.showPage = true;
-
+        this.loadPage()
     },
-    
+
     data() {
         return {
 
@@ -147,6 +138,23 @@ export default {
     },
 
     methods: {
+
+        async loadPage(){
+            
+            let resp = await this.$request('@auth/load_me');
+
+            if(resp.error){
+                this.closeApp()
+                return;
+            }
+
+            this.user = resp.data.user;
+            this.showPage = true;
+
+            if(this.$route.path == '/'){
+                this.$router.push('/clientes') 
+            }
+        },
 
         showApiError(code, message){
             this.messageError = `Erro: ${code} - ${message}`;

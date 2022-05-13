@@ -34,15 +34,11 @@ export default {
                 let status = await this.$request('@auth/refresh_user_admin');
                 this.component = !status.error ? 'AdminArea' : 'AuthArea';
             } else {
-                
-            console.log("chamou 1");
                 this.component = 'AuthArea'
             }
         },
 
         onRestart(){
-            
-            console.log("chamou2");
             location.reload();
             return false;
         }
