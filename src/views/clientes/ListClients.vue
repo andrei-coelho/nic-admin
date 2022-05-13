@@ -2,8 +2,13 @@
     
     <v-container fluid>
 
+        
         <v-row>
-
+            <v-overlay
+                v-model="overlay"
+            >
+            
+        </v-overlay>
             <v-col cols="12" md="4" lg="3" v-for="client, k in list_clients" :key="k">
                 <v-card>
                     <v-card-title class="text-h5">
@@ -48,6 +53,7 @@ export default {
 
     data() {
         return {
+            overlay:false,
             list_clients: this.list
         }
     },
@@ -56,10 +62,23 @@ export default {
         clickOption(option, key){
             this.$emit('clickAction', option, this.list_clients[key])
         },
-        createGhost(key){
+        async createGhost(key){
+            
+            this.overlay = true;
             let client = this.list_clients[key];
-            console.log(client);
-            // abrir
+    
+            let resp = await this.$request("admin@clients/open_ghost_session", {
+                client_id: client.id
+            })
+
+            if(!resp.error){
+                this.$open_client(resp.data.session)
+            }
+
+            setTimeout(() => {
+                this.overlay = false;
+            }, 500)
+
         }
     },
 }

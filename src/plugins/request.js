@@ -73,6 +73,16 @@ export default {
 
         }
 
+        app.config.globalProperties.$open_client = function(session_client){
+            const d = new Date();
+            d.setTime(d.getTime() + (2*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+            document.cookie = `${options.session_client}=${session_client}; ${expires}; path=/`;
+            setTimeout(e => {
+                window.open(options.url_client, '_blank').focus();
+            }, 500)
+        }
+
         app.config.globalProperties.$close_session = function (){
             request__resetCookie();
             session = null;

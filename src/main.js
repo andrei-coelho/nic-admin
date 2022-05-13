@@ -14,7 +14,9 @@ createApp(App)
     production:false,
     url_production: 'http://',
     url_development: 'http://localhost:8800/',
+    url_client: 'http://localhost:3000/',
     session_name: 'nic_user_admin_sess',
+    session_client: 'nic_user_client_sess',
     session: 'session-augusto'
   })
   .mount('#app')
