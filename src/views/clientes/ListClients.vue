@@ -8,7 +8,7 @@
                 v-model="overlay"
             >
             
-        </v-overlay>
+            </v-overlay>
             <v-col cols="12" md="4" lg="3" v-for="client, k in list_clients" :key="k">
                 <v-card>
                     <v-card-title class="text-h5">
