@@ -1,5 +1,5 @@
 <template>
-    <v-container class="border" style="height: 100%;" fluid>
+    <v-container class="border" style="height: 100%; overflow:auto;" fluid>
         <v-row class="bg-info">
             <v-col><h5 class="text-center">Nome</h5></v-col>
             <v-btn

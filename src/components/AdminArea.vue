@@ -120,6 +120,12 @@ export default {
                     icon:"mdi-power",
                     slug:"configuracoes",
                     active:false
+                },
+                {
+                    nome:"Development",
+                    icon:"mdi-code-tags",
+                    slug:"development",
+                    active:false
                 }
             ],
             routesUser: [],

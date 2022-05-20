@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import ClientesView from '../views/ClientesView.vue'
 import ConfiguracoesView from '../views/ConfiguracoesView.vue'
+import DevelopmentView from '../views/DevelopmentView.vue'
+
 
 const routes = [
 
@@ -21,6 +23,11 @@ const routes = [
     name: 'configuracoes',
     component: ConfiguracoesView
   },
+  {
+    path:'/development',
+    name:'development',
+    component: DevelopmentView
+  }
 ]
 
 const router = createRouter({

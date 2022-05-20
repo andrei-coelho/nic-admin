@@ -1,16 +1,20 @@
 <template>
     
     <v-container fluid>
-
-        
         <v-row>
+
             <v-overlay
                 v-model="overlay"
             >
-            
             </v-overlay>
+
+            <v-col cols="12">
+                <h1>Lista de Clientes</h1>
+            </v-col>
+            
             <v-col cols="12" md="4" lg="3" v-for="client, k in list_clients" :key="k">
                 <v-card>
+
                     <v-card-title class="text-h5">
                         {{ client.nome }}
                     </v-card-title>
@@ -31,13 +35,12 @@
                                 @click="createGhost(k)"
                             ></v-btn>
                         </v-col>
-                        
                     </v-card-actions>
+
                 </v-card>
             </v-col>
 
         </v-row>
-
     </v-container>
 
 </template>
