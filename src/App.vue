@@ -31,6 +31,7 @@ export default {
 
         async start_app(){
             if(this.$has_session()){
+                console.log("aqui session");
                 let status = await this.$request('@auth/refresh_user_admin');
                 this.component = !status.error ? 'AdminArea' : 'AuthArea';
             } else {

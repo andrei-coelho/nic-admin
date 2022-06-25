@@ -60,6 +60,7 @@ export default {
     },
 
     created() {
+        console.log("CLIENTES");
         this.$emit('active_page', 'clientes')
         this.listar()
     },

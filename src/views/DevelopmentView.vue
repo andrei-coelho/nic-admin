@@ -5,6 +5,7 @@
 <script>
 export default {
     created() {
+        console.log("DEVELOPMENT");
         this.$emit('active_page', 'development')
     },
 }

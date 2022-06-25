@@ -57,6 +57,7 @@ export default {
     components:{ ListDropbox, LoadComponent, DropboxNew, DropboxEdit },
 
     created() {
+        console.log("CONFIG");
         this.$emit('active_page', 'configuracoes')
         this.listar()
     },
